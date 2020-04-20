@@ -1,0 +1,8 @@
+com\ssm\dao\ExamMapper.class
+com\ssm\dao\QuestionHistoryMapper.class
+com\ssm\dao\NewsMapper.class
+com\ssm\dao\QuestionMapper.class
+com\ssm\dao\TrainingMapper.class
+com\ssm\dao\UserMapper.class
+com\ssm\dao\ExamPaperMapper.class
+com\ssm\dao\SystemMapper.class

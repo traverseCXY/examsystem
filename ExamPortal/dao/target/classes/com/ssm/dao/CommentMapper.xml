@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.dao.CommentMapper">
+
+
+	<select id="getCommentByTypeAndReferId" resultType="com.ssm.entity.Comment">
+		select comment.*,eu.user_name username from et_comment comment
+		inner join et_user eu on comment.user_id = eu.user_id
+		where a.refer_id=#{referId} and a.comment_type=#{commentType}
+		<if test="indexId != 0">
+			and a.index_id &lt;= #{indexId}
+		</if>
+		order by comment.comment_id
+	</select>
+	
+	<select id="getMaxCommentIndexByTypeAndReferId" resultType="java.lang.Integer">
+		select max(index_id) from et_comment where refer_id=#{referId}
+		and comment_type=#{commentType}
+	</select>
+	
+	<insert id="addComment" useGeneratedKeys="true"
+		keyProperty="commentId" parameterType="com.ssm.entity.Comment">
+		insert into et_comment(refer_id,comment_type,index_id,user_id,content_msg,quoto_id,re_id)
+		values(
+		#{referId},#{commentType},#{indexId},#{userId},#{contentMsg},#{quotoId},#{reId}
+		)
+	</insert>
+</mapper>

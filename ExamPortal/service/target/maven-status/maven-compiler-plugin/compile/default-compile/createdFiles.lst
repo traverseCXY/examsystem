@@ -1,0 +1,12 @@
+com\ssm\service\CommentService.class
+com\ssm\service\impl\ExamPaperServiceImpl.class
+com\ssm\service\impl\ExamServiceImpl.class
+com\ssm\service\UserService.class
+com\ssm\service\ExamService.class
+com\ssm\service\impl\QuestionServiceImpl.class
+com\ssm\service\QuestionService.class
+com\ssm\service\impl\UserServiceImpl.class
+com\ssm\service\impl\CommentServiceImpl.class
+com\ssm\service\impl\QuestionHistoryServiceImpl.class
+com\ssm\service\QuestionHistoryService.class
+com\ssm\service\ExamPaperService.class

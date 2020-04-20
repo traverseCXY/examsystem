@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.dao.UserMapper">
+	
+	<select id="getUserByUserNameAndPassword" resultType="com.ssm.entity.User"
+		parameterType="com.ssm.entity.User">
+		select user_id userId,user_name userName,password,true_name trueName,national_id nationalId,email,phone_num phoneNum,create_time createTime,field_id fieldId,enabled from et_user where user_name=#{userName} and password=#{password};
+	</select>
+
+	<!-- group -->
+	<select id="getGroupListByUserId" resultType="com.ssm.entity.Group">
+		select id groupId,group_name groupName,create_time createTime,is_default defaultt
+		from et_group where user_id=#{userId} order by id desc
+	</select>
+
+	<select id="getUserCountByStudent" resultType="int">
+		select count(*) from et_user where field_id=0
+	</select>
+
+	<select id="getUserListByRoleId" resultType="com.ssm.entity.User" parameterType="int">
+		select * from et_user where user_id=#{userId}
+	</select>
+
+	<insert id="insertUser" useGeneratedKeys="true" keyProperty="userId"
+			parameterType="com.ssm.entity.User">
+		insert into
+		et_user(user_name,password,true_name,national_id,email,phone_num,create_time,field_id,
+		company,department)
+		value
+		(#{userName},#{password},#{trueName},#{nationalId},#{email},#{phoneNum},#{createTime},#{fieldId},#{company},#{department})
+	</insert>
+
+	<update id="updateUserPwd" parameterType="String">
+		update et_user set password=#{param2} where user_name=#{param1}
+	</update>
+
+	<update id="updateUser" parameterType="com.ssm.entity.User">
+		update et_user
+		<set>
+			<if test="user.userName != null">user_name=#{user.userName},</if>
+			<if test="user.trueName != null">true_name=#{user.trueName},</if>
+			<if test="user.nationalId != null">national_id=#{user.nationalId},</if>
+			<if test="user.email != null">email=#{user.email},</if>
+			<if test="user.phoneNum != null">phone_num=#{user.phoneNum},</if>
+			<if test="user.createTime != null">create_time=#{user.createTime},</if>
+			<if test="user.createBy neq 0">create_by=#{user.createBy},</if>
+			<if test="user.fieldId != 0">field_id=#{user.fieldId},</if>
+			<if test="user.company != null">company=#{user.company},</if>
+			<if test="user.department != null">department=#{user.department},</if>
+			user_id=#{user.userId}
+		</set>
+		<where>
+			(user_name = #{user.userName} or user_id=#{user.userId})
+		</where>
+	</update>
+
+
+
+</mapper>

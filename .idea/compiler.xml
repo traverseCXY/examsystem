@@ -11,18 +11,18 @@
         <module name="Portal-controller" />
         <module name="controller (Management)" />
         <module name="Portal-dao" />
+        <module name="Management-service" />
         <module name="entity (Management)" />
         <module name="controller (Portal)" />
         <module name="entity (Portal)" />
         <module name="Portal-service" />
         <module name="Management-controller" />
         <module name="Management-entity" />
-        <module name="service (Portal)" />
         <module name="Management-dao" />
-        <module name="dao (Portal)" />
-        <module name="Management-service" />
-        <module name="Portal-entity" />
         <module name="ScoreMarker" />
+        <module name="service (Portal)" />
+        <module name="Portal-entity" />
+        <module name="dao (Portal)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

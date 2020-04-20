@@ -1,0 +1,24 @@
+2020-02-29 01:39:12,135 INFO  com.exam.scoremarker.ScoreMarkerMain:90  -> scoreMaker checking next delivery from message queue
+2020-02-29 01:39:12,317 ERROR com.exam.scoremarker.ScoreMarkerMain:57  -> ScoreMarker startup failed.
+java.lang.NullPointerException
+	at com.exam.scoremarker.ScoreCalcuService.calcuScore(ScoreCalcuService.java:53)
+	at com.exam.scoremarker.ScoreMarkerMain.run(ScoreMarkerMain.java:96)
+	at com.exam.scoremarker.ScoreMarkerMain.main(ScoreMarkerMain.java:54)
+2020-02-29 01:39:31,886 INFO  com.exam.scoremarker.ScoreMarkerMain:90  -> scoreMaker checking next delivery from message queue
+2020-02-29 01:39:39,670 ERROR com.exam.scoremarker.ScoreMarkerMain:57  -> ScoreMarker startup failed.
+java.lang.NullPointerException
+	at com.exam.scoremarker.ScoreCalcuService.calcuScore(ScoreCalcuService.java:53)
+	at com.exam.scoremarker.ScoreMarkerMain.run(ScoreMarkerMain.java:96)
+	at com.exam.scoremarker.ScoreMarkerMain.main(ScoreMarkerMain.java:54)
+2020-02-29 01:41:48,040 INFO  com.exam.scoremarker.ScoreMarkerMain:90  -> scoreMaker checking next delivery from message queue
+2020-02-29 01:47:33,794 INFO  com.exam.scoremarker.ScoreMarkerMain:90  -> scoreMaker checking next delivery from message queue
+2020-02-29 01:47:55,224 INFO  com.exam.scoremarker.ScoreMarkerMain:90  -> scoreMaker checking next delivery from message queue
+2020-02-29 01:49:20,590 INFO  com.exam.scoremarker.ScoreMarkerMain:90  -> scoreMaker checking next delivery from message queue
+2020-02-29 02:05:34,236 INFO  com.exam.scoremarker.ScoreMarkerMain:90  -> scoreMaker checking next delivery from message queue
+2020-02-29 02:06:06,081 ERROR com.exam.scoremarker.ScoreMarkerMain:57  -> ScoreMarker startup failed.
+java.lang.NullPointerException
+	at com.exam.scoremarker.ScoreCalcuService.calcuScore(ScoreCalcuService.java:53)
+	at com.exam.scoremarker.ScoreMarkerMain.run(ScoreMarkerMain.java:96)
+	at com.exam.scoremarker.ScoreMarkerMain.main(ScoreMarkerMain.java:54)
+2020-02-29 02:09:49,261 INFO  com.exam.scoremarker.ScoreMarkerMain:90  -> scoreMaker checking next delivery from message queue
+2020-02-29 02:09:58,995 INFO  com.exam.scoremarker.ScoreMarkerMain:90  -> scoreMaker checking next delivery from message queue

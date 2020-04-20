@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.dao.ExamPaperMapper">
+	
+	<select id="getExamPaperList" resultType="com.ssm.entity.ExamPaper"
+		parameterType="int">
+		select paper.id id, paper.name name, paper.content content, paper.duration duration, paper.total_point totalPoint, paper.pass_point passPoint, paper.group_id groupId, paper.is_visible isVisible, paper.status status, paper.create_time createTime, paper.summary summary, paper.is_subjective isSubjective, paper.answer_sheet answerSheet, paper.creator creator, paper.paper_type paperType, paper.field_id fieldId, ef.field_name fieldName from et_exam_paper paper
+		inner join et_field ef on paper.field_id = ef.field_id
+		 order by paper.id
+	</select>
+
+	<select id="getExamPaperById" resultType="com.ssm.entity.ExamPaper"
+			parameterType="int">
+		select * from et_exam_paper
+		<where>
+			id = #{examPaperId}
+		</where>
+	</select>
+
+	<update id="updateExamPaper" parameterType="com.ssm.entity.ExamPaper">
+		update et_exam_paper set
+		<if test="name != null">
+			name = #{name},
+		</if>
+		<if test="duration != 0">
+			duration = #{duration},
+		</if>
+		<if test="paperType != null and paperType neq '-1'">
+			paper_type = #{paperType},
+		</if>
+		<if test="content != null">
+			content=#{content},
+		</if>
+		<if test="answerSheet != null">
+			answer_sheet=#{answerSheet},
+		</if>
+		<if test="totalPoint != 0">
+			total_point=#{totalPoint},
+		</if>
+		<if test="status != -1">
+			status=#{status},
+		</if>
+		id=#{id}
+		where id=#{id}
+	</update>
+
+	<delete id="deleteExamPaper" parameterType="Integer">
+		delete from et_exam_paper where id=#{examPaperId}
+	</delete>
+
+	<insert id="insertExamPaper" parameterType="com.ssm.entity.ExamPaper"
+			useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+		et_exam_paper
+		(name,group_id,content,duration,pass_point,summary,total_point,is_subjective,answer_sheet,creator,field_id)
+		values
+		(#{name},#{groupId},#{content},#{duration},#{passPoint},#{summary},#{totalPoint},#{isSubjective},#{answerSheet},#{creator},#{fieldId});
+	</insert>
+
+	<select id="getExamPaperAll" resultType="com.ssm.entity.ExamPaper">
+		select * from et_exam_paper order by id
+	</select>
+
+	<select id="getExamPaperPageList" resultType="com.ssm.entity.ExamPaper">
+		select paper.*,ef.* from et_exam_paper paper
+		inner join et_field ef on paper.field_id = ef.field_id
+			<where>
+				<if test="param3">
+					and paper.field_id=#{param3}
+				</if>
+				<if test="param4!= '0'.toString() ">
+					and paper.name like concat(concat('%',#{param4}),'%')
+				</if>
+			</where>
+		 order by id
+	</select>
+
+	<select id="getExamPaperCount" resultType="int">
+		select count(*) from et_exam_paper
+	</select>
+
+
+</mapper>

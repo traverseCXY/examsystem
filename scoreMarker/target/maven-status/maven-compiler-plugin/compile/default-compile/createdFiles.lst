@@ -1,0 +1,13 @@
+com\exam\scoremarker\config\ScoreMarkConfig.class
+com\exam\scoremarker\ScoreCalcuService.class
+com\exam\scoremarker\entity\Constants.class
+com\exam\scoremarker\entity\AnswerSheet.class
+com\exam\scoremarker\config\RestTemplateConfig.class
+com\exam\scoremarker\ScoreMarkerWin$1.class
+com\exam\scoremarker\AbstractDaemon$1.class
+com\exam\scoremarker\ScoreMarkerMain.class
+com\exam\scoremarker\ScoreMarkerWin.class
+com\exam\scoremarker\entity\ExamPaper.class
+com\exam\scoremarker\config\WxMappingJackson2HttpMessageConverter.class
+com\exam\scoremarker\entity\AnswerSheetItem.class
+com\exam\scoremarker\AbstractDaemon.class

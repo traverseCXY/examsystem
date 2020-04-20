@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.dao.ExamMapper">
+	
+	<select id="getExamsPage" resultType="com.ssm.entity.Exam"
+		parameterType="int">
+		select exam.id examId,exam.exam_name examName,exam.exam_subscribe examSubscribe,exam.exam_type examType,exam.start_time effTime,exam.end_time expTime,exam.exam_paper_id examPaperId,exam.creator,exam.creator_id creatorId,exam.approved,eep.name examPaperName  from et_exam exam
+		inner join et_exam_paper eep on exam.exam_paper_id = eep.id
+		order by exam.id
+	</select>
+
+	<select id="getExamAll" resultType="com.ssm.entity.Exam"
+		parameterType="int">
+		select exam.id examId,exam.exam_name examName,exam.exam_subscribe examSubscribe,exam.exam_type examType,exam.start_time effTime,exam.end_time expTime,exam.exam_paper_id examPaperId,exam.creator,exam.creator_id creatorId,exam.approved,eep.name examPaperName  from et_exam exam
+		inner join et_exam_paper eep on exam.exam_paper_id = eep.id
+		order by exam.id
+	</select>
+
+	<insert id="addExam" parameterType="com.ssm.entity.Exam" useGeneratedKeys="true" keyProperty="examId" >
+		insert into et_exam(exam_name,exam_subscribe,exam_type,start_time,end_time,exam_paper_id,creator,creator_id,approved)
+		values(#{examName},#{examSubscribe},#{examType},#{effTime},#{expTime},#{examPaperId},#{creator},#{creatorId},#{approved})
+	</insert>
+
+	<select id="getExamCount" resultType="int">
+		select count(*) from et_exam order  by id
+	</select>
+
+	<select id="getExamList" resultType="com.ssm.entity.Exam">
+		select exam.id examId,exam.exam_name examName,exam.exam_subscribe examSubscribe,exam.exam_type examType,exam.start_time effTime,exam.end_time expTime,exam.exam_paper_id examPaperId,exam.creator,exam.creator_id creatorId,exam.approved,eep.name examPaperName  from et_exam exam
+		inner join et_exam_paper eep on exam.exam_paper_id = eep.id
+		<if test="typeId != null">
+			where exam.exam_type =#{typeId}
+		</if>
+		order by exam.id
+
+	</select>
+
+	<select id="getModelTestCount" resultType="int">
+		select count(*)  from et_exam exam
+		inner join et_exam_paper eep on exam.exam_paper_id = eep.id
+		where exam.exam_type =3
+
+	</select>
+
+	<select id="getUserExamHistListByExamId" resultType="com.ssm.entity.ExamHistory">
+		select m.*,p.dep_name depName from (select a.id histId,a.user_id userId,b.user_name userName,b.true_name trueName,b.phone_num phoneNum,b.email,b.national_id nationalId,a.start_time startTime,a.exam_id examId,a.exam_paper_id examPaperId,a.enabled,c.total_point point,a.seri_no seriNo,a.content,
+		a.answer_sheet answerSheet,a.duration,a.point_get pointGet,a.submit_time submitTime,a.approved,a.verify_time verifyTime,c.pass_point passPoint from et_user_exam_history a,et_user b,et_exam_paper c
+		where a.user_id=b.user_id and a.exam_id=#{examId} and a.exam_paper_id=c.id
+		<if test="order != null">
+			order by a.point_get ${order}
+		</if>
+		<if test="limit != 0">
+			limit 0,#{limit}
+		</if>
+		) m left join et_user_2_department n on m.userId = n.user_id left join et_department p on n.dep_id=p.dep_id
+		<if test="searchStr != null">
+			where (instr(m.trueName,#{searchStr}) &lt;&gt; 0 or instr(m.userName,#{searchStr}) &lt;&gt; 0 or instr(m.phoneNum,#{searchStr}) &lt;&gt; 0 or instr(m.nationalId,#{searchStr}) &lt;&gt; 0 or instr(m.email,#{searchStr}) &lt;&gt;0 or instr(m.seriNo,#{searchStr}) &lt;&gt; 0 or instr(p.dep_name,#{searchStr}) &lt;&gt; 0)
+		</if>
+	</select>
+
+	<update id="changeUserExamHistStatus">
+		update et_user_exam_history set approved=#{approved},verify_time=sysdate() where id=#{histId}
+	</update>
+
+	<select id="getUserExamHistList" resultType="com.ssm.entity.ExamHistory">
+		select m.*,p.dep_name depName from (select a.id histId,a.user_id userId,b.user_name userName,b.true_name trueName,a.start_time startTime,a.exam_id examId,a.exam_paper_id examPaperId,a.enabled,a.point,a.seri_no seriNo,a.content,
+		a.answer_sheet answerSheet,a.duration,a.point_get pointGet,a.submit_time submitTime,a.approved,a.verify_time verifyTime from et_user_exam_history a,et_user b
+		where a.user_id=b.user_id
+		<if test="array != null">
+			and a.approved in
+			<foreach collection="array" open="(" close=")" separator=","
+					 index="index" item="item">
+				#{item}
+			</foreach>
+		</if>
+		) m left join et_user_2_department n on m.userId = n.user_id left join et_department p on n.dep_id=p.dep_id
+		order by m.histId desc
+	</select>
+
+	<delete id="deleteExamById" parameterType="int">
+		delete from et_exam where id=#{examId}
+	</delete>
+
+	<update id="updateUserExamHist">
+		update et_user_exam_history
+		<set>
+			answer_sheet = #{answerSheetStr},point=#{answerSheet.pointMax},point_get=#{answerSheet.pointRaw},submit_time=sysdate(),duration=#{answerSheet.duration},
+			start_time=#{answerSheet.startTime}
+			<if test="approved != 0">
+				,approved=#{approved}
+			</if>
+		</set>
+		where id=#{answerSheet.examHistroyId}
+	</update>
+
+	<update id="changeExamStatus">
+		update et_exam set approved=#{approved} where id=#{examId}
+	</update>
+
+	<select id="getUserExamHistListByHistId" resultType="com.ssm.entity.ExamHistory">
+		select a.id histId,a.user_id userId,b.user_name userName,b.true_name trueName,a.start_time startTime,a.exam_id examId,a.exam_paper_id examPaperId,a.enabled,a.point,a.seri_no seriNo,a.content,
+		a.answer_sheet answerSheet,a.duration,a.point_get pointGet,a.submit_time submitTime,a.approved,a.verify_time verifyTime from et_user_exam_history a,et_user b
+		where a.user_id=b.user_id and a.id=#{histId}
+	</select>
+
+	<select id="getUserExamHistListByExamIdCount" parameterType="int" resultType="int">
+		select count(*) from et_user_exam_history
+		inner join et_exam_paper eep on et_user_exam_history.exam_paper_id = eep.id
+		inner join et_user eu on et_user_exam_history.user_id = eu.user_id
+		where et_user_exam_history.exam_id=#{examId}
+	</select>
+
+</mapper>
