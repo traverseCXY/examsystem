@@ -1,0 +1,10 @@
+# Project exclude paths
+/ExamManagement/controller/target/
+/ExamManagement/dao/target/
+/ExamManagement/entity/target/
+/ExamManagement/service/target/
+/ExamPortal/controller/target/
+/ExamPortal/dao/target/
+/ExamPortal/entity/target/
+/ExamPortal/service/target/
+/scoreMarker/target/

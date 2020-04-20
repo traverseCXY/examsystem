@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/ExamManagement/controller/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamManagement/controller/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamManagement/dao/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamManagement/dao/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamManagement/entity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamManagement/entity/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamManagement/service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamManagement/service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamPortal/controller/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamPortal/controller/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamPortal/dao/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamPortal/dao/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamPortal/entity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamPortal/entity/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamPortal/service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamPortal/service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/scoreMarker/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/scoreMarker/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

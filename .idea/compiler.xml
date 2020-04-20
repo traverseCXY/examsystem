@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="service (Management)" />
+        <module name="dao (Management)" />
+        <module name="Portal-controller" />
+        <module name="controller (Management)" />
+        <module name="Portal-dao" />
+        <module name="entity (Management)" />
+        <module name="controller (Portal)" />
+        <module name="entity (Portal)" />
+        <module name="Portal-service" />
+        <module name="Management-controller" />
+        <module name="Management-entity" />
+        <module name="service (Portal)" />
+        <module name="Management-dao" />
+        <module name="dao (Portal)" />
+        <module name="Management-service" />
+        <module name="Portal-entity" />
+        <module name="ScoreMarker" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common" target="1.5" />
+      <module name="sys-student" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
